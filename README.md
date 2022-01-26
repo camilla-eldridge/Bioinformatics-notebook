@@ -1,4 +1,4 @@
-# Practical Bioinformatics Notes 
+# Practical Notes 
 
 Bookmark of tool commands and notes...
 
@@ -6,15 +6,16 @@ Bookmark of tool commands and notes...
 
 **Genome alignment**
 
-#nucmer alignment of two genomes in forward orientation
+#nucmer alignment of two genomes in forward orientation:
 
             bsub -P teamID -n 24 -e nucmer_e -o nucmer_o -M 36000 -R"select[mem>36000] rusage[mem=36000] span[hosts=1]" /path/to/nucmer -f -p output_ID /path/to/genomeA.fa /path/to/genomeB.fa
 
 <br /> <br /> <br />
 
 **Dot** 
-#Dot plot of nucmer alignment above
-            bsub -P teamID -e dot.e -o dot.o -M 4000 -R"select[mem>4000] rusage[mem=4000]" /path/to/DotPrep.py --delta output_ID.delta --out output_ID2
+#Dot plot of nucmer alignment above:
+
+                        bsub -P teamID -e dot.e -o dot.o -M 4000 -R"select[mem>4000] rusage[mem=4000]" /path/to/DotPrep.py --delta output_ID.delta --out output_ID2
 
 <br /> <br /> <br />
 
