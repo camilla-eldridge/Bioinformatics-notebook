@@ -6,32 +6,32 @@ Bookmark of tool commands and notes...
 
 **Genome alignment**
 
-#nucmer alignment of two genomes in forward orientation:
+nucmer alignment of two genomes in forward orientation:
 
             bsub -P teamID -n 24 -e nucmer_e -o nucmer_o -M 36000 -R"select[mem>36000] rusage[mem=36000] span[hosts=1]" /path/to/nucmer -f -p output_ID /path/to/genomeA.fa /path/to/genomeB.fa
 
 <br /> <br /> <br />
 
 **Dot** 
-#Dot plot of nucmer alignment above:
+
+Dot plot of nucmer alignment above:
 
                         bsub -P teamID -e dot.e -o dot.o -M 4000 -R"select[mem>4000] rusage[mem=4000]" /path/to/DotPrep.py --delta output_ID.delta --out output_ID2
 
 <br /> <br /> <br />
 
-**Repeat library generation** 
+**Repeat library generation and masking** 
 
 RepArk 
-<br /> <br /> <br />
-      ./RepARK.pl -l /path/to/genome.fna -o repeats_out
+            ./RepARK.pl -l /path/to/genome.fna -o repeats_out
 <br /> <br /> <br />
 
 **RepeatMasker** 
-  RepeatMasker genome.fna -lib repeat_lib.lib -xsmall -gff -nocut -noisy
+
+            RepeatMasker genome.fna -lib repeat_lib.lib -xsmall -gff -nocut -noisy
 <br /> <br /> <br />
 
 **gushr**
-<br /> <br /> <br />
 
             bsub -q normal -o gushr.log -n 15 -M20000 -R'select[mem>20000] rusage[mem=20000] span[hosts=1]' /path/to/gushr.py -t /path/to/gtf -b /path/to/bam -g /path/to/genome -o utr_output
 
