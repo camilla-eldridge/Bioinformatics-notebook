@@ -14,7 +14,7 @@ Bookmark of tool commands and notes...
 
 # Dot 
 #Dot plot of nucmer alignment above
-bsub -P teamID -e dot.e -o dot.o -M 4000 -R"select[mem>4000] rusage[mem=4000]" /path/to/DotPrep.py --delta output_ID.delta --out output_ID2
+            bsub -P teamID -e dot.e -o dot.o -M 4000 -R"select[mem>4000] rusage[mem=4000]" /path/to/DotPrep.py --delta output_ID.delta --out output_ID2
 
 <br /> <br /> <br />
 
@@ -30,7 +30,7 @@ bsub -P teamID -e dot.e -o dot.o -M 4000 -R"select[mem>4000] rusage[mem=4000]" /
 
 # gushr
 
-bsub -q normal -o gushr.log -n 15 -M20000 -R'select[mem>20000] rusage[mem=20000] span[hosts=1]' /path/to/gushr.py -t /path/to/gtf -b /path/to/bam -g /path/to/genome -o utr_output
+            bsub -q normal -o gushr.log -n 15 -M20000 -R'select[mem>20000] rusage[mem=20000] span[hosts=1]' /path/to/gushr.py -t /path/to/gtf -b /path/to/bam -g /path/to/genome -o utr_output
 
 <br /> <br /> <br />
 
@@ -44,7 +44,7 @@ bsub -q normal -o gushr.log -n 15 -M20000 -R'select[mem>20000] rusage[mem=20000]
 
     bsub -q basement -o star_round2.txt -M32000 -R'select[mem>32000] rusage[mem=32000] span[hosts=1]'  -n 16 /path/to/star --genomeDir /path/to/genome_index_dir --runThreadN 16 --readFilesIn out.R1.fastq.gz,out.R2.fastq.gz --outFileNamePrefix out2 --outSAMtype BAM Unsorted --readFilesCommand zcat --sjdbFileChrStartEnd outSJ.out.tab
 
-# other options.....--outFilterMultimapNmax 1 
+#other options.....--outFilterMultimapNmax 1 
 <br /> <br /> <br />
 
 # VARUS
@@ -63,22 +63,22 @@ bsub -o cdhit.o -e cdhit.e  -n 6 -M10000 -R"select[mem>10000] rusage[mem=10000] 
 <br /> <br /> <br />
 
 # BTK
-bsub -o out.txt -n 24 -M100000 -R"select[mem>100000] rusage[mem=100000] span[hosts=1]" -q long snakemake -p --use-conda --conda-prefix /path/to/blob_pipe/230420/.conda --directory /path/to/blobdir/ --configfile /path/to/config.yaml --latency-wait 100 --rerun-incomplete --stats ID.snakemake.stats -j 20 -s /path/to/insdc-pipeline/Snakefile --resources btk=1
+            bsub -o out.txt -n 24 -M100000 -R"select[mem>100000] rusage[mem=100000] span[hosts=1]" -q long snakemake -p --use-conda --conda-prefix /path/to/blob_pipe/230420/.conda --directory /path/to/blobdir/ --configfile /path/to/config.yaml --latency-wait 100 --rerun-incomplete --stats ID.snakemake.stats -j 20 -s /path/to/insdc-pipeline/Snakefile --resources btk=1
 <br /> <br /> <br />
 
 # BUSCO with singularity
 # for transcriptome
-  bsub -q normal  -o busco.o -e busco.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /bind/path: -e busco_5.1.2.sif  busco -m transcriptome -i /path/to/Trinity.fasta -l mollusca_odb10 -o out_ID -c 12 --offline  --download_path busco_downloads -f --auto-lineage-euk
+            bsub -q normal  -o busco.o -e busco.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /bind/path: -e busco_5.1.2.sif  busco -m transcriptome -i /path/to/Trinity.fasta -l mollusca_odb10 -o out_ID -c 12 --offline  --download_path busco_downloads -f --auto-lineage-euk
 
 <br /> <br /> <br />
 
 #for genome
-  bsub -q normal -o busco.o -e busco.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /bind/path: -e busco_5.1.2.sif  busco -m genome -i genome.fa -l arthropoda_odb10 -o genome -c 12 --offline --download_path busco_downloads -f
+             bsub -q normal -o busco.o -e busco.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /bind/path: -e busco_5.1.2.sif  busco -m genome -i genome.fa -l arthropoda_odb10 -o genome -c 12 --offline --download_path busco_downloads -f
 
 <br /> <br /> <br />
 
 # samtools
-  samtools fastq --reference reference_genome.fa -1 out.R1.fastq -2 out.R2.fastq input.cram
+             samtools fastq --reference reference_genome.fa -1 out.R1.fastq -2 out.R2.fastq input.cram
 
   if no reference given in the sam/bam then samtools can find it, it's embedded...
   otherwise specify the reference...
@@ -89,24 +89,24 @@ samtools view -@ 6 -b -f 256 -F 4 -h mybam.bwa-mem.bam > mybam.bwa-mem.flag256.b
 
 #To exclude all multi-mapped reads
 
-  bsub -o uniq_map.txt  -n 6 -M10000 -R"select[mem>10000] rusage[mem=10000] span[hosts=1]" samtools view -h out2Aligned.out.bam | grep -v -e 'XA:Z:' -e 'SA:Z:' | samtools view -b > out2Aligned.unique_mapped.bam
+             bsub -o uniq_map.txt  -n 6 -M10000 -R"select[mem>10000] rusage[mem=10000] span[hosts=1]" samtools view -h out2Aligned.out.bam | grep -v -e 'XA:Z:' -e 'SA:Z:' | samtools view -b > out2Aligned.unique_mapped.bam
 
 #Check they are unique 
-  samtools view output_filtered.bam | awk '{print $1}' | sort | uniq -d
+            samtools view output_filtered.bam | awk '{print $1}' | sort | uniq -d
 
 <br /> <br /> <br />
 
 # Trinity assembly
 # singularity trinity run
 
-   bsub -q basement  -o out.o -e error.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /lustre:/lustre -e trinityrnaseq.v2.12.0.simg Trinity --seqType fq --left /path/to/4#2.cram.R1.fastq --right /path/to/4#2.cram.R2.fastq  --max_memory 32G --CPU 12 --trimmomatic --SS_lib_type RF --bflyCPU 6 --bflyHeapSpaceMax 10G --trimmomatic --normalize_by_read_set --output /path/to/trinity_out
+            bsub -q basement  -o out.o -e error.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /lustre:/lustre -e trinityrnaseq.v2.12.0.simg Trinity --seqType fq --left /path/to/4#2.cram.R1.fastq --right /path/to/4#2.cram.R2.fastq  --max_memory 32G --CPU 12 --trimmomatic --SS_lib_type RF --bflyCPU 6 --bflyHeapSpaceMax 10G --trimmomatic --normalize_by_read_set --output /path/to/trinity_out
 
 <br /> <br /> <br />
 
 # Some awks
 #length of each sequence in mult fasta file
 
-  cat genome.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }'
+            cat genome.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }'
 
 
 <br /> <br /> <br />
