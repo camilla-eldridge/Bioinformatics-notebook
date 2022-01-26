@@ -67,13 +67,13 @@ bsub -o cdhit.o -e cdhit.e  -n 6 -M10000 -R"select[mem>10000] rusage[mem=10000] 
 <br /> <br /> <br />
 
 # BUSCO with singularity
-# for transcriptome
-            bsub -q normal  -o busco.o -e busco.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /bind/path: -e busco_5.1.2.sif  busco -m transcriptome -i /path/to/Trinity.fasta -l mollusca_odb10 -o out_ID -c 12 --offline  --download_path busco_downloads -f --auto-lineage-euk
+#for transcriptome
+            bsub -q normal  -o busco.o -e busco.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity                  exec --bind /bind/path: -e busco_5.1.2.sif  busco -m transcriptome -i /path/to/Trinity.fasta -l mollusca_odb10 -o out_ID -c 12 --offline                    --download_path busco_downloads -f --auto-lineage-euk
 
 <br /> <br /> <br />
 
 #for genome
-             bsub -q normal -o busco.o -e busco.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /bind/path: -e busco_5.1.2.sif  busco -m genome -i genome.fa -l arthropoda_odb10 -o genome -c 12 --offline --download_path busco_downloads -f
+             bsub -q normal -o busco.o -e busco.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity                  exec --bind /bind/path: -e busco_5.1.2.sif  busco -m genome -i genome.fa -l arthropoda_odb10 -o genome -c 12 --offline --download_path busco_downloads -f
 
 <br /> <br /> <br />
 
@@ -97,9 +97,9 @@ samtools view -@ 6 -b -f 256 -F 4 -h mybam.bwa-mem.bam > mybam.bwa-mem.flag256.b
 <br /> <br /> <br />
 
 # Trinity assembly
-# singularity trinity run
+#singularity trinity run
 
-            bsub -q basement  -o out.o -e error.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /lustre:/lustre -e trinityrnaseq.v2.12.0.simg Trinity --seqType fq --left /path/to/4#2.cram.R1.fastq --right /path/to/4#2.cram.R2.fastq  --max_memory 32G --CPU 12 --trimmomatic --SS_lib_type RF --bflyCPU 6 --bflyHeapSpaceMax 10G --trimmomatic --normalize_by_read_set --output /path/to/trinity_out
+            bsub -q basement  -o out.o -e error.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity                  exec --bind /lustre:/lustre -e trinityrnaseq.v2.12.0.simg Trinity --seqType fq --left /path/to/4#2.cram.R1.fastq --right /path/to               /4#2.cram.R2.fastq  --max_memory 32G --CPU 12 --trimmomatic --SS_lib_type RF --bflyCPU 6 --bflyHeapSpaceMax 10G --trimmomatic --normalize_by_read_set --output    /path/to/trinity_out
 
 <br /> <br /> <br />
 
