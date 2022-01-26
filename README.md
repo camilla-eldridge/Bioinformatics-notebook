@@ -4,7 +4,7 @@ Bookmark of tool commands and notes...
 
 <br /> <br /> <br />
 
-# Genome alignment
+**Genome alignment**
 
 #nucmer alignment of two genomes in forward orientation
 
@@ -12,23 +12,25 @@ Bookmark of tool commands and notes...
 
 <br /> <br /> <br />
 
-# Dot 
+**Dot** 
 #Dot plot of nucmer alignment above
             bsub -P teamID -e dot.e -o dot.o -M 4000 -R"select[mem>4000] rusage[mem=4000]" /path/to/DotPrep.py --delta output_ID.delta --out output_ID2
 
 <br /> <br /> <br />
 
-# Repeat library generation 
+**Repeat library generation** 
 
-# RepArk 
+RepArk 
+<br /> <br /> <br />
       ./RepARK.pl -l /path/to/genome.fna -o repeats_out
 <br /> <br /> <br />
 
-# RepeatMasker 
+**RepeatMasker** 
   RepeatMasker genome.fna -lib repeat_lib.lib -xsmall -gff -nocut -noisy
 <br /> <br /> <br />
 
-# gushr
+**gushr**
+<br /> <br /> <br />
 
             bsub -q normal -o gushr.log -n 15 -M20000 -R'select[mem>20000] rusage[mem=20000] span[hosts=1]' /path/to/gushr.py -t /path/to/gtf -b /path/to/bam -g /path/to/genome -o utr_output
 
