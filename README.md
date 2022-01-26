@@ -121,12 +121,13 @@ Check they are unique
 
 singularity trinity run
 
-                        bsub -q basement  -o out.o -e error.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /lustre:/lustre -e trinityrnaseq.v2.12.0.simg Trinity --seqType fq --left /path/to/4#2.cram.R1.fastq --right /path/to               /4#2.cram.R2.fastq  --max_memory 32G --CPU 12 --trimmomatic --SS_lib_type RF --bflyCPU 6 --bflyHeapSpaceMax 10G --trimmomatic --normalize_by_read_set --output    /path/to/trinity_out
+                        bsub -q basement  -o out.o -e error.e -n 12 -M32000 -R"select[mem>32000] rusage[mem=32000] span[hosts=1]" /software/singularity-v3.6.4/bin/singularity exec --bind /lustre:/lustre -e trinityrnaseq.v2.12.0.simg Trinity --seqType fq --left /path/to/4#2.cram.R1.fastq --right /path/to /4#2.cram.R2.fastq  --max_memory 32G --CPU 12 --trimmomatic --SS_lib_type RF --bflyCPU 6 --bflyHeapSpaceMax 10G --trimmomatic --normalize_by_read_set --output    /path/to/trinity_out
 
 <br /> <br /> <br />
 
 **Some awks**
-length of each sequence in mult fasta file
+length of each sequence in mult fasta file:
+
 
                         cat genome.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }'
 
