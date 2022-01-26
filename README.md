@@ -73,9 +73,11 @@ other options.....--outFilterMultimapNmax 1
 <br /> <br /> <br />
 
 **BTK**
+
             bsub -o out.txt -n 24 -M100000 -R"select[mem>100000] rusage[mem=100000] span[hosts=1]" -q long snakemake -p --use-conda --conda-prefix /path/to/blob_pipe/230420/.conda --directory /path/to/blobdir/ --configfile /path/to/config.yaml --latency-wait 100 --rerun-incomplete --stats ID.snakemake.stats -j 20 -s /path/to/insdc-pipeline/Snakefile --resources btk=1
             
 <br /> <br /> <br />
+
 
 **BUSCO with singularity**
 
